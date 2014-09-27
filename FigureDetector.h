@@ -21,19 +21,25 @@ class FigureDetector
 public:
     FigureDetector();
     virtual~FigureDetector();
-    void DibujaFiguras();
+    void DrawFigures();
+    int getNumeroDeLados();
+    void drawRects();
+    void drawRectangles();
+    void drawTriangles();
+    void takePhoto();
+    void releaseObjects();
 private:
-    char key;
+
     CvMemStorage* storage = NULL;
     CvCapture* capture = NULL ;
-    IplImage* src = NULL;
+    IplImage* photo = NULL;
     CvSeq* contours = NULL;
     CvSeq* result = NULL;
-    IplImage* dst = NULL;
-    IplImage* gray = NULL;
+    IplImage* contours_image = NULL;
+    IplImage* gray_escale_image = NULL;
     CvSeq* lines = 0;
-    bool captured= false;
     int i;
+
 
 
 

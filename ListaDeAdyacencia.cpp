@@ -39,6 +39,7 @@ void ListaDeAdyacencia<T>:: relacionar(T ele1 , T ele2){
         if(temporal2 != NULL && temporal3 != NULL){
             temporal2->agregarArista(temporal3);
         }
+        else{cout<<"No existe algun elemento en el grafo"<<endl;}
     }
 }
 
@@ -54,10 +55,14 @@ void ListaDeAdyacencia<T>:: imprimir()
         cout<<"No hay elementos a imprimir"<<endl;
     }
     else{
+
         NodoGrafo<T>* temporal = NULL;
         temporal = this->primerNodo;
+
+        this->ultimoNodo->set_siguiente(NULL);
         while(temporal != NULL)
         {
+
            cout<< " | "<<temporal->get_elemento()<< " | " ;
            temporal->get_listaDeAristas().imprimir();
             temporal = temporal->get_siguiente();

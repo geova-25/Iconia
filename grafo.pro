@@ -54,3 +54,6 @@ LIBS += -lopencv_nonfree
 
 # -l represents for file
 
+QMAKE_CXXFLAGS += -std=c++0x -pthread
+LIBS += -pthread
+
