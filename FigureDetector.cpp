@@ -6,7 +6,7 @@ FigureDetector::FigureDetector()
     capture = cvCaptureFromCAM(0);
     photo = cvQueryFrame(capture);
     contours_image = cvCreateImage( cvGetSize(photo), 8, 1 );
-    gray_escale_image = cvCreateImage( cvGetSize(photo), 8, 3 );
+    gray_scale_image = cvCreateImage( cvGetSize(photo), 8, 3 );
 
 }
 FigureDetector::~FigureDetector(){}
@@ -15,7 +15,7 @@ void FigureDetector :: DrawFigures(){
          takePhoto();
          cvCanny( photo, contours_image, 50, 200, 3 );
          cvThreshold(contours_image,contours_image,100,255,CV_THRESH_BINARY);
-         cvCvtColor( contours_image, gray_escale_image, CV_GRAY2BGR );
+         cvCvtColor( contours_image, gray_scale_image, CV_GRAY2BGR );
          cvFindContours(contours_image,storage, &contours, sizeof(CvContour), CV_RETR_LIST,CV_CHAIN_APPROX_SIMPLE, cvPoint(0,0));
          result= cvApproxPoly(contours, sizeof(CvContour),storage,CV_POLY_APPROX_DP,cvContourPerimeter(contours)*0.02,0);
          lines = cvHoughLines2( contours_image, storage, CV_HOUGH_PROBABILISTIC, 1, CV_PI/180, 50, 50, 10 );
@@ -36,6 +36,7 @@ void FigureDetector :: DrawFigures(){
 
          //-----------------------------------------------------------------------------------------
          cvShowImage("Iconia",photo);
+         //cout<<result->total<<endl;
 }
 
 
@@ -99,7 +100,7 @@ void FigureDetector::releaseObjects(){
     cvReleaseCapture(&capture);
     cvDestroyAllWindows();
     cvReleaseImage(&photo);
-    cvReleaseImage(&gray_escale_image);
+    cvReleaseImage(&gray_scale_image);
     cvReleaseImage(&contours_image);
     cvClearMemStorage( storage );
 

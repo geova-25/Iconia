@@ -36,9 +36,10 @@ private:
     CvSeq* contours = NULL;
     CvSeq* result = NULL;
     IplImage* contours_image = NULL;
-    IplImage* gray_escale_image = NULL;
+    IplImage* gray_scale_image = NULL;
     CvSeq* lines = 0;
     int i;
+    IplImage* photo_clone=NULL;
 
 
 
