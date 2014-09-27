@@ -7,9 +7,9 @@ SOURCES += main.cpp \
     Nodo.cpp \
     ListaEnlazada.cpp \
     Grafo.cpp \
-    clasificadordefiguras.cpp \
     NodoGrafo.cpp \
-    ListaDeAdyacencia.cpp
+    ListaDeAdyacencia.cpp \
+    FigureDetector.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -18,9 +18,9 @@ HEADERS += \
     Nodo.h \
     ListaEnlazada.h \
     Grafo.h \
-    clasificadordefiguras.h \
     NodoGrafo.h \
-    ListaDeAdyacencia.h
+    ListaDeAdyacencia.h \
+    FigureDetector.h
 
 INCLUDEPATH += /usr/local/include/opencv
 

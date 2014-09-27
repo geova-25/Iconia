@@ -99,6 +99,7 @@ void  ListaEnlazada<T> :: agregarAlFinal(T num)
     {
         this->ultimoNodo->set_siguiente(temp);
         this->ultimoNodo = temp;
+        this->ultimoNodo->set_siguiente(NULL);
     }
 
 }

@@ -11,7 +11,7 @@
 template <class T>
 Nodo<T>::Nodo()
 {
-    this->elemento = 0;
+    this->elemento ;
     this->siguiente_elemento = NULL;
 
 }

@@ -18,19 +18,26 @@ void ListaDeAdyacencia<T>:: relacionar(T ele1 , T ele2){
     }
     else{
         NodoGrafo<T>* temporal = NULL;
-        //NodoGrafo<T>* temporal2 = NULL;
-        //NodoGrafo<T>*
+        NodoGrafo<T>* temporal2 = NULL;
+        NodoGrafo<T>* temporal3 = NULL;
 
         temporal = this->primerNodo;
         while(temporal != NULL)
         {
             if(temporal->get_elemento() == ele1){ //implenetar mejor
-
+                temporal2 = temporal;
+                cout<<"iguales"<<endl;
             }
-
-
+            if(temporal->get_elemento() == ele2){ //implenetar mejor
+                temporal3 = temporal;
+                cout<<"iguales2"<<endl;
+            }
             temporal = temporal->get_siguiente();
-
+                cout<<"iguales3"<<endl;
+        }
+        cout<<"iguales4"<<endl;
+        if(temporal2 != NULL && temporal3 != NULL){
+            temporal2->agregarArista(temporal3);
         }
     }
 }
@@ -49,16 +56,10 @@ void ListaDeAdyacencia<T>:: imprimir()
     else{
         NodoGrafo<T>* temporal = NULL;
         temporal = this->primerNodo;
-        cout << "[";
         while(temporal != NULL)
         {
-            if (temporal != this->ultimoNodo){
-                    cout << temporal->get_elemento()<<" , ";
-            }
-            else{
-                cout << temporal->get_elemento()<<"]"<<endl;
-            }
-
+           cout<< " | "<<temporal->get_elemento()<< " | " ;
+           temporal->get_listaDeAristas().imprimir();
             temporal = temporal->get_siguiente();
 
         }
@@ -109,6 +110,7 @@ void  ListaDeAdyacencia<T> :: agregarAlFinal(T num)
     {
         this->ultimoNodo->set_siguiente(temp);
         this->ultimoNodo = temp;
+        this->ultimoNodo->set_siguiente(NULL);
     }
 
 }
