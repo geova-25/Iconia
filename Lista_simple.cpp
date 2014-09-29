@@ -1,102 +1,88 @@
-/*
- * Lista_simple.cpp
- *
- *  Created on: 01/08/2014
- *      Author: giovanni
- */
-
 #include<iostream>
-#include "Nodo.h"
+#include "NodoG.h"
 #include "Lista_simple.h"
 using namespace std;
 
+/**
+ * @brief ListaSimple::ListaSimple  constructor de la clase
+ * Inicializa los atributos para evitar problemas.
+ */
 ListaSimple :: ListaSimple()
 {
-	primerNodo = NULL;
-	ultimoNodo = NULL;
+    primerNodo = NULL;
+    ultimoNodo = NULL;
+    counter = 0;
 }
+
 
 void ListaSimple :: llenar()
 {
-	int x;
-	for(x = 1; x != 10 ; x++)
-	{
-		agregarAlFinal(x);
-	}
+    int x;
+    for(x = 1; x != 10 ; x++)
+    {
+        agregarAlFinal(x);
+    }
 }
 
+/**
+ * @brief ListaSimple::imprimir imprime los elementos contenidos
+ */
 void ListaSimple :: imprimir()
 {
-	Nodos* temporal = NULL;
-	temporal = primerNodo;
-	while(temporal != NULL)
-	{
-		cout << temporal->get_numero() << endl;
-		temporal = temporal->get_siguiente();
-	}
+    Nodos* temporal = NULL;
+    temporal = primerNodo;
+    while(temporal != NULL)
+    {
+        cout << temporal->get_numero() << endl;
+        temporal = temporal->get_siguiente();
+    }
 }
 
+/**
+ * @brief ListaSimple::estaVacia retorna booleano
+ * Determina si la lista esta vacia o contiene elementos compara el primer elemento con nulo
+ * @return booleano indicando si esta o no vacia
+ */
 bool ListaSimple :: estaVacia()
 {
-	return primerNodo == NULL;
+    return primerNodo == NULL;
 }
 
+/**
+ * @brief ListaSimple::agregarAlFinal agrega un elemento nuevo a una lista
+ * Sirve para agregar nuevos objetos a la lista crea un nuevo nodo y si esta vacia se lo asigna al primer y ultimo
+ * nodo, de otra manera crea un nuevo nodo y se lo asigna como siguiente nodo al ultimo
+ * @param num entero con valor del objeto de la lista nuevo
+ */
 void ListaSimple :: agregarAlFinal(int num)
 {
-	Nodos* temp = new Nodos(num);
-	if (estaVacia())
-	{
-		this->primerNodo = this->ultimoNodo = temp;
-	}
-	else
-	{
-		this->ultimoNodo->set_siguiente(temp);
-		this->ultimoNodo = temp;
-	}
-	return;
+    counter ++;
+    Nodos* temp = new Nodos(num);
+    if (estaVacia())
+    {
+        this->primerNodo = this->ultimoNodo = temp;
+    }
+    else
+    {
+        this->ultimoNodo->set_siguiente(temp);
+        this->ultimoNodo = temp;
+    }
+    return;
 }
 
-void ListaSimple :: eliminarDelFinal()
-{
-	Nodos *tempo = primerNodo;
-	if(estaVacia())
-	{
-		cout << "NO HAY ELEMENTOS EN LA LISTA" << endl;
-	}
-	else
-	{
-		while(tempo->get_siguiente() != ultimoNodo)
-		{
-			tempo = tempo->get_siguiente();
-		}
-		ultimoNodo = tempo;
-		ultimoNodo->set_siguiente(NULL);
-	}
+
+
+
+Nodos* ListaSimple :: get_primerNodo(){
+    return this->primerNodo;
 }
 
-void ListaSimple :: agregarAlFrente(int num)
-{
-	Nodos* temp = new Nodos(num);
-	if(estaVacia())
-	{
-		primerNodo = ultimoNodo = temp;
-	}
-	else
-	{
-		temp->set_siguiente(primerNodo);
-		primerNodo = temp;
-	}
-}
 
-void ListaSimple :: eliminarDelFrente()
-{
-	if(estaVacia())
-	{
-		cout << "La lista se encuentra vacia" << endl;
-	}
-	else
-	{
-		primerNodo = primerNodo->get_siguiente();
-	}
-}
 
+/**
+ * @brief ListaSimple::counterNodos cuenta cuantos nodos contiene una lista simple
+ * @return counter el entero con el numero de nodos
+ */
+int ListaSimple :: counterNodos(){
+    return counter;
+}

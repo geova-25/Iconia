@@ -7,8 +7,13 @@
 #define filas   20
 #define columnas 6
 
-//using namespace cv;
 using namespace std;
+
+/**
+ * @brief The Genetic class Algoritmo Genetico
+ * Esta clase realiza todo el algoritmo genetico en este caso es inicia la población la cruza, la muta y por
+ * último selecciona el mejor individuo para colocarlo en el pixel
+ */
 
 class Genetic
 {
@@ -27,7 +32,6 @@ public:
 
 
 private:
-
     stringstream individuos;
     stringstream genes;
     stringstream pix;

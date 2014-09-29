@@ -1,42 +1,30 @@
-/*
- * Lista_simple.h
- *
- *  Created on: 03/08/2014
- *      Author: giovanni
- */
-
-#ifndef LISTA_SIMPLE_H_
-#define LISTA_SIMPLE_H_
-/*
- * Lista_simple.cpp
- *
- *  Created on: 01/08/2014
- *      Author: giovanni
- */
+#ifndef LISTA_SIMPLE_H
+#define LISTA_SIMPLE_H
 
 #include<iostream>
-#include "Nodo.h"
+#include "NodoG.h"
 #include "Lista_simple.h"
 using namespace std;
 
 class ListaSimple
 {
-	private:
-		Nodos* primerNodo;
-		Nodos* ultimoNodo;
+    private:
+        Nodos* primerNodo;
+        Nodos* ultimoNodo;
+        int counter;
 
-	public:
-		ListaSimple();
-		void llenar();
-		void imprimir();
-		void agregarAlFrente(int);
-		void agregarAlFinal(int);
-		void eliminarDelFrente();
-		void eliminarDelFinal();
-		bool estaVacia();
-		Nodos* get_primerNodo();
+    public:
+        ListaSimple();
+        void llenar();
+        void imprimir();
+        void agregarAlFrente(int);
+        void agregarAlFinal(int);
+        void eliminarDelFrente();
+        void eliminarDelFinal();
+        bool estaVacia();
+        int counterNodos();
+        Nodos* get_primerNodo();
 };
 
 
-
-#endif /* LISTA_SIMPLE_H_ */
+#endif // LISTA_SIMPLE_H

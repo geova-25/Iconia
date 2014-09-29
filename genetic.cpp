@@ -9,15 +9,22 @@
 #include "opencv2/highgui/highgui.hpp"
 
 
-
 using namespace std;
 
-
+/**
+ * @brief Genetic::Genetic Constructor
+ */
 Genetic::Genetic()
 {
 }
 
-//ver la poblacion existente
+
+
+/**
+ * @brief Genetic::verPoblacion Imprime la población
+ * En cada nueva generación Imprime los individuos que existen en este casa por población hay 20
+ *
+ */
 void Genetic::verPoblacion(){
     for(int i=0;i<filas;i++){
         for(int j=0;j<columnas;j++ ){
@@ -28,7 +35,12 @@ void Genetic::verPoblacion(){
     }
 }
 
-//inicia y crea la poblacion
+/**
+ * @brief Genetic::iniciarPoblacion Inicia una población
+ * @param Poblacion
+ * Genera una población para que se pueda generar el algoritmo genetico y asi dar inicio a los cruces entre
+ * individuos y darce la mutación
+ */
 void Genetic::iniciarPoblacion(string Poblacion[filas][columnas]){
     std::string individuo = "";
     for(int i=0;i<filas;i++){
@@ -36,9 +48,7 @@ void Genetic::iniciarPoblacion(string Poblacion[filas][columnas]){
         for(int j=0; j<8;j++){
             int temp = rand()%2;
             genes << temp;
-            //if(j!=7){
-                genes << ",";
-            //}
+            genes << ",";
             individuo =genes.str();
         }
         individuos<<i;
@@ -48,7 +58,13 @@ void Genetic::iniciarPoblacion(string Poblacion[filas][columnas]){
     }
 }
 
-//convierte el numero de binario a decimal
+
+
+/**
+ * @brief Genetic::convertirIndividuo Convierte a decimal
+ * @param Poblacion
+ * Pasa el individuo con los genes a un  numero decimal, este se va a convertir en el numero principal de pixel
+ */
 void Genetic::convertirIndividuo(string Poblacion[filas][columnas]){
 
     for(int i=0;i<filas;i++){
@@ -72,7 +88,15 @@ void Genetic::convertirIndividuo(string Poblacion[filas][columnas]){
         }
 }
 
-//realiza la funcion del pixel lo multiplica por 3
+
+
+/**
+ * @brief Genetic::funcion Función para el RGB
+ * @param Poblacion
+ * @return mayor
+ * Genera un valor con el valor de pixel que sacamos este valor se multiplica or 3 para asi poder darle el valor
+ * a los tres colores en este caso el RGB de cada pixel de la imagen
+ */
 int Genetic::funcion(string Poblacion[filas][columnas]){
     int mayor=0;
     sumatoria=0;
@@ -91,7 +115,13 @@ int Genetic::funcion(string Poblacion[filas][columnas]){
     return mayor;
 }
 
-//funcion de fitnes para saber el mejor individuo
+
+
+/**
+ * @brief Genetic::fitness Calcula el mejor fitness
+ * @param Poblacion
+ * Es una funcion que saca el promedio del fitness de cada individuo y se lo coloca a cada uno respectivamente
+ */
 void Genetic::fitness(string Poblacion[filas][columnas]){
     for(int i=0;i<filas;i++){
         fitn.str("");
@@ -102,6 +132,7 @@ void Genetic::fitness(string Poblacion[filas][columnas]){
         Poblacion[i][4]=fitn.str();
     }
 }
+
 
 //saca el individio
 /*
@@ -178,7 +209,12 @@ void seleccionarIndividuos(string Poblacion[filas][columnas]){
 */
 
 
-//Seleccionar cada individuo
+
+/**
+ * @brief Genetic::seleccionar Selección de individuos
+ * @param Poblacion
+ * Selecciona los individuos y los coloca con quienes se va a cruzar
+ */
 void Genetic::seleccionar(string Poblacion[filas][columnas]){
     if(banderasel==false){
         srand (time(NULL));
@@ -191,7 +227,6 @@ void Genetic::seleccionar(string Poblacion[filas][columnas]){
         banderasel=true;
     }
     else{
-        //cout<<"hola"<<endl;
         srand (time(NULL));
         for(int i=0;i<filas;i++){
             ran.str("");
@@ -204,7 +239,11 @@ void Genetic::seleccionar(string Poblacion[filas][columnas]){
 
 }
 
-
+/**
+ * @brief Genetic::cruce Realiza el cruce
+ * @param Poblacion
+ * Ya al saber con quien se va a cruzar lo siguiente es que realiza el cruce con este método
+ */
 void Genetic::cruce(string Poblacion[filas][columnas]){
     time_t g;
     srand((unsigned) time(&g));
@@ -236,8 +275,12 @@ void Genetic::cruce(string Poblacion[filas][columnas]){
 
 }
 
+/**
+ * @brief Genetic::mutacion Realiza la mutación
+ * @param Poblacion
+ * Genera la mutación en cada individuo
+ */
 void Genetic::mutacion(string Poblacion[filas][columnas]){
-
     string individuo= "";
     string temp="";
     string indtem="";
@@ -263,8 +306,6 @@ void Genetic::mutacion(string Poblacion[filas][columnas]){
                 }
             }
         }
-        //cout<<"cambio: "<<cambio<<endl;
-
         for(int k=0;k<temp.length();k++){
             indtem+=temp[k];
             indtem+=",";
@@ -297,8 +338,6 @@ void Genetic::mutacion(string Poblacion[filas][columnas]){
                     }
                 }
             }
-            //cout<<" a: "<<a<<endl;
-
             for(int k=0;k<temp.length();k++){
                 indtem+=temp[k];
                 indtem+=",";
@@ -317,7 +356,12 @@ void Genetic::mutacion(string Poblacion[filas][columnas]){
 
 
 
-
+/**
+ * @brief Genetic::mejorPixel Saca mejor pixel
+ * @param pixel
+ * @return pixel
+ * De el ultimo individuo saca el mejor individuo para colocarlo en la imagen
+ */
 int Genetic::mejorPixel(int pixel){
     string pixelstr="";
     int indpixel=0;
